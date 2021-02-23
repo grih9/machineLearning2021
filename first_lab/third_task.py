@@ -14,7 +14,7 @@ with open("1/glass.csv") as f:
     lines = f.readlines()[1:]
     for line in lines:
         arr = line.strip('\n').replace('"', '').split(",")
-        X.append(arr[1:-1])
+        X.append(list(map(float, arr[1:-1])))
         y.append(int(arr[-1]))
 
 X_train, X_test, y_train, y_test = train_test_split(X, y, train_size=0.8)
