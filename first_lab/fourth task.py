@@ -144,7 +144,6 @@ def task_cde(task, gamma="scale", c=1):
             X_test.append(list(map(float, arr[1:-1])))
             y_test.append(translator[arr[-1]])
 
-
     if task == "c":
         models = (SVC(kernel="linear"),
                   SVC(kernel="poly", gamma=gamma, degree=1, C=c),
