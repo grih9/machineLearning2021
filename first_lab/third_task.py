@@ -4,7 +4,6 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn import metrics, svm
 from sklearn.model_selection import train_test_split
 
-
 X = []
 y = []
 
