@@ -41,7 +41,7 @@ def first_task_tic_tac_toe():
 
     plt.plot(xp, y1p, label="train accuracy")
     plt.plot(xp, y2p, label="test accuracy")
-    plt.xlabel("test size")
+    plt.xlabel("train size")
     plt.ylabel("accuracy")
     plt.legend(loc="best")
     plt.show()

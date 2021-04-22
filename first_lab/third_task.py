@@ -10,7 +10,10 @@ y = []
 test_example_X = [[1.516, 11.7, 1.01, 1.19, 72.59, 0.43, 11.44, 0.02, 0.1]]
 
 with open("1/glass.csv") as f:
-    lines = f.readlines()[1:]
+    lines = f.readlines()
+    headers = lines[0].strip('\n').replace('"', '').split(",")
+    print(headers)
+    lines = lines[1:]
     for line in lines:
         arr = line.strip('\n').replace('"', '').split(",")
         X.append(list(map(float, arr[1:-1])))
@@ -35,7 +38,7 @@ for k in range(1, kmax + 1):
     test_example_y[nbrs.predict(test_example_X)[0] - 1] += 1
 
 for metric_ in ("euclidean", "manhattan", "chebyshev", "minkowski"):
-    nbrs = KNeighborsClassifier(n_neighbors=kmax, metric=metric_)
+    nbrs = KNeighborsClassifier(n_neighbors=5, metric=metric_)
     print(metric_)
     nbrs.fit(X_train, y_train)
     predicted = nbrs.predict(X_test)
@@ -45,6 +48,7 @@ for metric_ in ("euclidean", "manhattan", "chebyshev", "minkowski"):
     test_example_y[nbrs.predict(test_example_X)[0] - 1] += 1
 
 print(test_example_y)
+print(test_example_y.index(max(test_example_y)) + 1)
 plt.plot(xp, y1p, label="train error")
 plt.plot(xp, y2p, label="test error")
 plt.xlabel("k neighbours")
