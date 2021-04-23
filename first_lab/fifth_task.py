@@ -34,6 +34,10 @@ def task_a():
     pred = clf.predict(X_test)
     print("testing accuracy:", end=" ")
     print(metrics.accuracy_score(pred, y_test))
+    plt.figure(figsize=(60, 30))
+    tree.plot_tree(clf, feature_names=names,
+                   filled=True, fontsize=5, rounded=True)
+    plt.show()
 
     for crit in ("gini", "entropy"):
         print(f"criterion={crit}")
@@ -313,4 +317,5 @@ def task_b():
                    filled=True, fontsize=5, rounded=True)
     plt.show()
 
+#task_a()
 task_b()
