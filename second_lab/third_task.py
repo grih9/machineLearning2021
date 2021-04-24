@@ -1,46 +1,100 @@
+from keras.datasets import mnist
 from sklearn import metrics
-from sklearn.naive_bayes import GaussianNB
+from sklearn.metrics import classification_report
 from sklearn.model_selection import train_test_split
+from sklearn.neural_network import MLPClassifier
 import matplotlib.pylab as plt
 
-x_translator = {"x": 0,
-                "o": 1,
-                "b": 2}
-
-y_translator = {"positive": 0,
-                "negative": 1}
 X = list()
 y = list()
 
-with open("1/tic_tac_toe.txt", "r") as f:
-    for line in f:
-        arr = line.strip('\n').split(",")
-        X.append([x_translator[elem] for elem in arr[:9]])
-        y.append(y_translator[arr[9]])
+(X_train, y_train), (X_test, y_test) = mnist.load_data()
+print('X_train: ' + str(X_train.shape))
+print('Y_train: ' + str(y_train.shape))
+print('X_test:  ' + str(X_test.shape))
+print('Y_test:  ' + str(y_test.shape))
 
-xp = []
-y1p = []
-y2p = []
+X_train = X_train.reshape(X_train.shape[0], 28 * 28)
+X_test = X_test.reshape(X_test.shape[0], 28 * 28)
 
-for train_s in range(5, 96, 5):
-    X_train, X_test, y_train, y_test = train_test_split(X, y, train_size=train_s / 100)
-    model = GaussianNB()
-    model.fit(X_train, y_train)
-    y_pr = model.predict(X_test)
-    y2 = model.predict(X_train)
-    print(len(y_train), len(y2))
-    print(sum(y2 != y_train))
-    print(1 - metrics.accuracy_score(y_train, y2))
-    y1p.append(metrics.accuracy_score(y_train, y2))
-    # print(len(y_test), len(y_pr))
-    # print(sum(y_pr != y_test))
-    # print(1 - metrics.accuracy_score(y_test, y_pr))
-    y2p.append(metrics.accuracy_score(y_test, y_pr))
-    xp.append(train_s / 100)
+print('X_train: ' + str(X_train.shape))
+print('Y_train: ' + str(y_train.shape))
+print('X_test:  ' + str(X_test.shape))
+print('Y_test:  ' + str(y_test.shape))
 
-plt.plot(xp, y1p, label="train accuracy")
-plt.plot(xp, y2p, label="test accuracy")
-plt.xlabel("train size")
-plt.ylabel("accuracy")
-plt.legend(loc="best")
-plt.show()
+mlp = MLPClassifier(random_state=1, hidden_layer_sizes=(100, 100, 100),
+                    max_iter=1000000)
+mlp.fit(X_train, y_train)
+pred = mlp.predict(X_test)
+print(mlp.n_iter_)
+print(metrics.accuracy_score(y_test, pred))
+
+mlp = MLPClassifier(hidden_layer_sizes=(100, 100, 100),
+                    max_iter=1000000)
+mlp.fit(X_train, y_train)
+pred = mlp.predict(X_test)
+print(mlp.n_iter_)
+print(metrics.accuracy_score(y_test, pred))
+
+# mlp = MLPClassifier(random_state=1, hidden_layer_sizes=(50, 40, 30),
+#                     max_iter=1000000)
+# mlp.fit(X_train, y_train)
+# pred = mlp.predict(X_test)
+# print(mlp.n_iter_)
+# print(metrics.accuracy_score(y_test, pred))
+#
+# mlp = MLPClassifier(hidden_layer_sizes=(50, 40, 30),
+#                     max_iter=1000000)
+# mlp.fit(X_train, y_train)
+# pred = mlp.predict(X_test)
+# print(mlp.n_iter_)
+# print(metrics.accuracy_score(y_test, pred))
+#
+# mlp = MLPClassifier(random_state=1, hidden_layer_sizes=(50),
+#                     max_iter=1000000)
+# mlp.fit(X_train, y_train)
+# pred = mlp.predict(X_test)
+# print(mlp.n_iter_)
+# print(metrics.accuracy_score(y_test, pred))
+#
+# mlp = MLPClassifier(hidden_layer_sizes=(50),
+#                     max_iter=1000000)
+# mlp.fit(X_train, y_train)
+# pred = mlp.predict(X_test)
+# print(mlp.n_iter_)
+# print(metrics.accuracy_score(y_test, pred))
+#
+# mlp = MLPClassifier(random_state=1, hidden_layer_sizes=(150),
+#                     max_iter=1000000)
+# mlp.fit(X_train, y_train)
+# pred = mlp.predict(X_test)
+# print(mlp.n_iter_)
+# print(metrics.accuracy_score(y_test, pred))
+#
+# mlp = MLPClassifier(hidden_layer_sizes=(150),
+#                     max_iter=1000000)
+# mlp.fit(X_train, y_train)
+# pred = mlp.predict(X_test)
+# print(mlp.n_iter_)
+# print(metrics.accuracy_score(y_test, pred))
+
+mlp = MLPClassifier(random_state=1, hidden_layer_sizes=(350),
+                    max_iter=1000000)
+mlp.fit(X_train, y_train)
+pred = mlp.predict(X_test)
+print(mlp.n_iter_)
+print(metrics.accuracy_score(y_test, pred))
+
+mlp = MLPClassifier(hidden_layer_sizes=(350),
+                    max_iter=1000000)
+mlp.fit(X_train, y_train)
+pred = mlp.predict(X_test)
+print(mlp.n_iter_)
+print(metrics.accuracy_score(y_test, pred))
+
+mlp = MLPClassifier(random_state=1, hidden_layer_sizes=(),
+                    max_iter=1000000)
+mlp.fit(X_train, y_train)
+pred = mlp.predict(X_test)
+print(mlp.n_iter_)
+print(metrics.accuracy_score(y_test, pred))
