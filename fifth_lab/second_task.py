@@ -1,6 +1,5 @@
 import pandas as pd
 from itertools import combinations
-from sklearn import metrics
 from sklearn.linear_model import LinearRegression
 
 data = pd.read_csv("5/reglab.txt", sep='\t')

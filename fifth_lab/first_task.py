@@ -1,5 +1,4 @@
 import pandas as pd
-from sklearn import metrics
 from sklearn.linear_model import LinearRegression
 
 data = pd.read_csv("5/reglab1.txt", sep='\t')
