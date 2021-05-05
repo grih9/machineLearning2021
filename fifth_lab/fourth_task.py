@@ -29,9 +29,13 @@ for param in params:
 
 plt.plot([i for i in range(26)], r_test, label="test")
 plt.plot([i for i in range(26)], r_train, label="train")
+plt.ylabel("mean_squared_error")
+plt.title("Зависимость ошибки от i")
 plt.legend()
 plt.show()
 plt.plot(params, r_test, label="test")
 plt.plot(params, r_train, label="train")
+plt.ylabel("mean_squared_error")
+plt.title("Зависимость ошибки от lambda")
 plt.legend()
 plt.show()
