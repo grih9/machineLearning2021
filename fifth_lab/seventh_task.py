@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
 
-data = pd.read_csv('5/cars.csv')
+data = pd.read_csv("5/cars.csv")
 
 plt.scatter(data["speed"], data["dist"])
 X_train = np.array(data["speed"]).reshape(-1, 1)
